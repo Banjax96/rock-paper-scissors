@@ -59,17 +59,32 @@ function playRound(humanChoice, computerChoice) {
     }
     if (win == 1){
         console.log(`You win! ${humanChoice} beats ${computerChoice}.`)
+        return "human";
     }
     if (win == 2){
         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+        return "computer";
     }
 }
 
-//console.log(getComputerChoice());
+function playGame() {
+    let round = 0;
+    let humanScore = 0;
+    let computerScore = 0;
 
-//console.log(getHumanChoice());
+    while (round < 5){
+        let win = playRound(getHumanChoice(), getComputerChoice());
+        if (win == "human"){
+            humanScore += 1;
+        }
+        if (win == "computer"){
+            computerScore += 1;
+        }
 
-let humanScore = 0;
-let computerScore = 0;
+        console.log(`Human score: ${humanScore}\nComputer score: ${computerScore}`)
 
-playRound(getHumanChoice(), getComputerChoice());
+        round += 1;
+    }
+}
+
+playGame();
