@@ -23,9 +23,53 @@ function getHumanChoice() {
     return hand;
 }
 
-console.log(getComputerChoice());
+function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    let win = 0;
 
-console.log(getHumanChoice());
+    console.log(computerChoice);
+
+    if (computerChoice == "rock"){
+        if (humanChoice == "paper"){
+            win = 1;
+        }
+        if (humanChoice == "scissors"){
+            win = 2;
+        }
+    }
+    if (computerChoice == "paper"){
+        if (humanChoice == "scissors"){
+            win = 1;
+        }
+        if (humanChoice == "rock"){
+            win = 2;
+        }
+    }
+    if (computerChoice == "scissors"){
+        if (humanChoice == "rock"){
+            win = 1;
+        }
+        if (humanChoice == "paper"){
+            win = 2;
+        }
+    }
+
+    if (win == 0){
+        console.log(`Tie! You and the computer both threw ${humanChoice}.`)
+    }
+    if (win == 1){
+        console.log(`You win! ${humanChoice} beats ${computerChoice}.`)
+    }
+    if (win == 2){
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+    }
+}
+
+//console.log(getComputerChoice());
+
+//console.log(getHumanChoice());
 
 let humanScore = 0;
 let computerScore = 0;
+
+playRound(getHumanChoice(), getComputerChoice());
