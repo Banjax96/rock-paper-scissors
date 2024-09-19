@@ -17,4 +17,15 @@ function getComputerChoice(){
     return hand;
 }
 
+function getHumanChoice() {
+    let hand = prompt("What hand do you throw: ");
+    
+    return hand;
+}
+
 console.log(getComputerChoice());
+
+console.log(getHumanChoice());
+
+let humanScore = 0;
+let computerScore = 0;
