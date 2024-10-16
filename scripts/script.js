@@ -1,3 +1,28 @@
+const btns = document.querySelectorAll("button");
+const body = document.querySelector("body");
+let human = 0;
+let comp = 0;
+
+const output = document.createElement("div");
+body.appendChild(output);
+
+btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        if (human < 5 && comp < 5){
+            let win = playRound(btn.id, getComputerChoice());
+            if (win == "human"){
+                human += 1;
+            }
+            if (win == "computer"){
+                comp += 1;
+            }
+            output.textContent = `${win} wins!\nHuman wins: ${human}\nComputer wins: ${comp}`;
+        } else {
+            output.textContent += ` GAME OVER! ${(human === 5 ? "Human" : "Computer")} wins!`
+        }
+    });
+});
+
 function getComputerChoice(){
     let hand = "";
     let num = Math.floor(Math.random() * 3);
@@ -56,6 +81,7 @@ function playRound(humanChoice, computerChoice) {
 
     if (win == 0){
         console.log(`Tie! You and the computer both threw ${humanChoice}.`)
+        return "tie";
     }
     if (win == 1){
         console.log(`You win! ${humanChoice} beats ${computerChoice}.`)
@@ -67,24 +93,3 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    let round = 0;
-    let humanScore = 0;
-    let computerScore = 0;
-
-    while (round < 5){
-        let win = playRound(getHumanChoice(), getComputerChoice());
-        if (win == "human"){
-            humanScore += 1;
-        }
-        if (win == "computer"){
-            computerScore += 1;
-        }
-
-        console.log(`Human score: ${humanScore}\nComputer score: ${computerScore}`)
-
-        round += 1;
-    }
-}
-
-playGame();
